@@ -3,9 +3,9 @@ from os import environ
 
 from gensim.models.doc2vec import Doc2Vec
 
-from configuration.config import Config
-from preprocessing.preprocessor import Preprocessor
-from search_engine.search_engine import SearchEngine
+from search_engine.configuration.config import Config
+from search_engine.preprocessing.preprocessor import Preprocessor
+from search_engine.engine.search_engine import SearchEngine
 
 logger = getLogger(__name__)
 
