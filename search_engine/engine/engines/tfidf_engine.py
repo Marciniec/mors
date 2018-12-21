@@ -5,9 +5,9 @@ from gensim.corpora import Dictionary
 from gensim.models import TfidfModel
 from gensim.similarities import SparseMatrixSimilarity
 
-from configuration.config import Config
-from model.tfidf.preprocess import Preprocessor
-from search_engine.search_engine import HybridEngine
+from search_engine.configuration.config import Config
+from search_engine.preprocessing.preprocessor import Preprocessor
+from search_engine.engine.search_engine import HybridEngine
 
 logger = getLogger(__name__)
 

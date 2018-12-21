@@ -3,9 +3,9 @@ from os import environ
 
 from gensim.models.doc2vec import Doc2Vec
 
-from configuration.config import Config
-from preprocessing.preprocessor import Preprocessor
-from search_engine.search_engine import SearchEngine
+from search_engine.configuration.config import Config
+from search_engine.preprocessing.preprocessor import Preprocessor
+from search_engine.engine.search_engine import SearchEngine
 
 logger = getLogger(__name__)
 
@@ -27,15 +27,15 @@ class D2VEngine(SearchEngine):
     def load_model(self, model_path, dict_path=None):
         self.model = Doc2Vec.load(model_path)
 
-    def search(self, query, results=100):
+    def search(self, query, limit=50):
         inferred_vector = self._infer(query)
-        return self.model.docvecs.most_similar([inferred_vector], topn=results)
+        return self.model.docvecs.most_similar([inferred_vector], topn=limit)
 
-    def dict_search(self, query, results=100):
-        results = self.search(query, results=results)
+    def dict_search(self, query, limit=100):
+        limit = self.search(query, limit=limit)
 
         query_len = len(query.split(" "))
-        return {url: self._adjust(query_len, similarity) for url, similarity in results}
+        return {url: self._adjust(query_len, similarity) for url, similarity in limit}
 
     def _infer(self, document):
         tokens = self.preprocessor.preprocess_doc(document)
