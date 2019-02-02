@@ -2,9 +2,9 @@
 .ipynb_checkpoints/
 
 *IDE
-*\.idea\*
-model1
-model2
+.idea
+
+Resources\
 venv\
 
 Resources\
@@ -12,4 +12,3 @@ test_data/*
 
 *.log
 *.out
-
